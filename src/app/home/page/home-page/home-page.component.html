@@ -1,0 +1,19 @@
+<div
+  *ngIf="currentSigner$ | async as state"
+  class="w-screen h-screen flex flex-col justify-center items-center gap-[20px]"
+>
+  <div class="flex flex-col items-center gap-3">
+    <button
+      (click)="connectWallet()"
+      class="p-3 bg-slate-300 rounded-xl hover:shadow-lg hover:text-white hover:bg-slate-400 transition-all"
+    >
+      <div>
+        {{ state.isConnected ? state.currentAccount : "Connect Wallet" }}
+      </div>
+    </button>
+    <button (click)="createNewBox()" class="p-5 bg-red-200">create Box</button>
+  </div>
+  <div *ngIf="boxes.length > 0 && state.isConnected">
+    <div *ngFor="let box of boxes">{{ box.name }}</div>
+  </div>
+</div>
